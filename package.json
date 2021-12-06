@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "dev": "nodemon main.js -i '*.json'",
+    "start": "nodemon main.mjs -i '*.json'",
     "mon": "nodemon main.mjs -i '*.json'"
   },
   "author": "Joao Felipi Cardoso, Guilherme Ribeiro",
