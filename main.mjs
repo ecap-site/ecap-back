@@ -73,6 +73,6 @@ app.get('/msg', (req, res)=>{
 
 //A escuta do site se dá em 8087, porta definida nos requires
 //este deve ser o último pedaço do código, tudo escrito depois não é 'ouvido' pelo site
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Servidor de testes rodando em: http://localhost:${port}`);
 });
