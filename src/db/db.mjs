@@ -130,6 +130,22 @@ export async function isAdm(x) {
 /*===============================================================================================================================================================*/
 /*===============================================================================================================================================================*/
 
+export async function getCourseX(x) {
+    
+        const query = {id:x}
+        console.log(query)
+        const find = courseModel.find(query).exec()
+    
+        if ((await find).length === 1) {
+            console.log(find)
+            return find
+        } else {
+            console.log(`fool!`)
+            return false
+        }
+    
+}
+
 export async function findCourses(){
 
    var coursesCreated = await courseModel.find() //encontra todos os cursos

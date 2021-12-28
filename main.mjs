@@ -7,7 +7,7 @@ import cors from 'cors'
 
 const port = 8087 //Porta onde fica hospedado o localhost
 
-import { createUser, log, isAdm, findCourses, userRegModel} from './src/db/db.mjs'
+import { createUser, log, isAdm, findCourses, getCourseX} from './src/db/db.mjs'
 import { createCourse } from "./classroom/index.mjs"
 
 
@@ -40,15 +40,26 @@ app.get('/cursos', (req, res) => {
   }
 })
 
+//Rota para retornar apenas 1 curso
+app.get('/infoCourse/:id', (req, res) => {
+  console.log("we received your request and we're working on it")
+  var id = req.params
+  console.log(id.id)
+  var curso = getCourseX(id.id).then(res => {
+    sendInfo(res)
+  }).catch(e => { throw e })
+  function sendInfo(x){
+    res.send(x)
+  }
+})
+
+
 app.post('/createCourse',(req,res)=>{
 
   createCourse(req.body).then(()=>{
-    //MANDAR UMA MENSAGEM PARA O REACT INDICANDO CRIAÇÃO DO CURSO.
-    Created = true
-  }).catch(() =>{
-    Created = false
+    res.send({status:200})
   })
-   //NAO ESTA FUNCIONANDO, MAS EU VOU TENTAR FAZER FUNCIONAR (งツ)ว
+
 })
 
 app.get('/msg', (req, res)=>{
@@ -68,6 +79,8 @@ app.get('/msg', (req, res)=>{
 
 
 /*===========================================auth Controllers======================================================*/
+
+
 
 /*===========================================Miscellaneous=========================================================*/
 
