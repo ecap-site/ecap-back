@@ -24,6 +24,12 @@ app.use(express.json());
 
 app.use(cors())
 
+//allow cors for all origins
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 /*===========================================Middlewares============================================================*/
 
 /*===========================================adm router============================================================*/
